@@ -95,4 +95,40 @@ QUnit.module('Тестируем функцию set', function () {
 
 		assert.deepEqual(set({}, '.deep.nested.field', null), object);
 	});
+
+	QUnit.test('set работает правильно c неполными объектами', function (assert) {
+		const object = {
+			one: {
+				two: {}
+			}
+		};
+
+		const object1 = {
+			one: {
+				two: {
+					five: "ЭЭЭ"
+				}
+			}
+		};
+
+		assert.deepEqual(set({}, '.one.two.five', "ЭЭЭ"), object1);
+	});
+
+	QUnit.test('set правильно переписывает объекты', function (assert) {
+		const object = {
+			one: {
+				two: 14
+			}
+		};
+
+		const object1 = {
+			one: {
+				two: {
+					five: "ЭЭЭ"
+				}
+			}
+		};
+
+		assert.deepEqual(set({}, '.one.two.five', "ЭЭЭ"), object1);
+	});
 });
