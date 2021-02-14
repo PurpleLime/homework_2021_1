@@ -39,7 +39,7 @@ const set = (object, propertyPath, value) => {
  * @returns {boolean} Результат проверки: true - объект, false - не объект
  */
 const isObjectType = arg => {
-  return typeof arg === 'object' && arg !== null;
+  return Object.prototype.toString.call(arg) === '[object Object]';
 };
 
 /**
