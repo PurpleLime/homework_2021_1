@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *По пути к вложенному свойству объекта устанавливает значение в это свойство
+ * По пути к вложенному свойству объекта устанавливает значение в это свойство
  *
  * @param {Object} object Объект, во вложенное свойство которого нужно установить значение
  * @param {String} propertyPath Путь к вложенному свойству объекта
@@ -10,7 +10,7 @@
  */
 const set = (object, propertyPath, value) => {
   try {
-    if (!isCorrectType(object, propertyPath)) {
+    if (!isObjectType(object) || !isStringType(propertyPath)) {
       throw new TypeError('Передан аргумент неверного типа');
     }
 
@@ -32,6 +32,22 @@ const set = (object, propertyPath, value) => {
   return object;
 };
 
-const isCorrectType = (object, string) => {
-  return !(typeof object !== 'object' || object === null || typeof string !== 'string');
+/**
+ * Проверяет, является ли аргумент объектом
+ *
+ * @param {*} object Проверяемый аргумент
+ * @returns {boolean} Результат проверки: true - объект, false - не объект
+ */
+const isObjectType = arg => {
+  return typeof arg === 'object' && arg !== null;
+};
+
+/**
+ * Проверяет, является ли аргумент строкой
+ *
+ * @param {*} arg Проверяемый аргумент
+ * @returns {boolean} Результат проверки: true - строка, false - не строка
+ */
+const isStringType = arg => {
+  return typeof arg === 'string';
 };
