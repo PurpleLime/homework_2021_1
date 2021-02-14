@@ -199,6 +199,14 @@ QUnit.module('Тестируем функцию set', function () {
   QUnit.test('set кидает исключение при неверных типах входных данных', function (assert) {
     assert.throws(() => set(123, '.field', 14), new TypeError('Передан аргумент неверного типа'));
     assert.throws(() => set({}, 123, 14), new TypeError('Передан аргумент неверного типа'));
-    assert.throws(() => set(123, 123, 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set(null, '.field', 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set({}, null, 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set('abcd', '.field', 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set(12n, '.field', 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set({}, 11n, 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set(true, '.field', 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set({}, true, 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set(undefined, '.field', 14), new TypeError('Передан аргумент неверного типа'));
+    assert.throws(() => set({}, undefined, 14), new TypeError('Передан аргумент неверного типа'));
   });
 });
